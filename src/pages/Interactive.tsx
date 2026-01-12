@@ -315,6 +315,14 @@ export default function Interactive() {
         animationRef.current = requestAnimationFrame(animate);
     }, [startPos, goalPos, selectedGroup, resetVisualization, getAlgorithmGenerator, applyGridStep, applySamplingStep]);
 
+    const stopAlgorithm = useCallback(() => {
+        if (animationRef.current) {
+            cancelAnimationFrame(animationRef.current);
+            animationRef.current = null;
+        }
+        setIsRunning(false);
+    }, []);
+
     // Step through algorithm one step at a time
     const stepAlgorithm = useCallback(() => {
         if (!startPos || !goalPos) {
@@ -417,6 +425,7 @@ export default function Interactive() {
                             <ControlPanel
                                 onRun={runAlgorithm}
                                 onStep={stepAlgorithm}
+                                onStop={stopAlgorithm}
                                 onReset={resetAll}
                                 isRunning={isRunning}
                                 canRun={canRun}
