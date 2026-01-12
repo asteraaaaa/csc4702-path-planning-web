@@ -389,136 +389,156 @@ export default function Interactive() {
                             />
                         </div>
 
-                        {/* Placement Mode */}
-                        <div className="bg-white p-4 rounded-lg shadow-sm">
-                            <label className="font-medium text-gray-700 block mb-2">Placement Mode:</label>
-                            <div className="flex gap-2">
-                                <Badge
-                                    variant={placementMode === 'start' ? 'default' : 'outline'}
-                                    className="cursor-pointer px-4 py-2"
-                                    onClick={() => setPlacementMode('start')}
-                                >
-                                    Start
-                                </Badge>
-                                <Badge
-                                    variant={placementMode === 'goal' ? 'default' : 'outline'}
-                                    className="cursor-pointer px-4 py-2"
-                                    onClick={() => setPlacementMode('goal')}
-                                >
-                                    Goal
-                                </Badge>
-                                <Badge
-                                    variant={placementMode === 'wall' ? 'default' : 'outline'}
-                                    className="cursor-pointer px-4 py-2"
-                                    onClick={() => setPlacementMode('wall')}
-                                >
-                                    Wall
-                                </Badge>
+                        <div className="flex flex-col lg:flex-row gap-4">
+                            {/* Placement Mode */}
+                            <div className="bg-white p-4 rounded-lg shadow-sm flex-1">
+                                <label className="font-medium text-gray-700 block mb-2">Placement Mode:</label>
+                                <div className="flex gap-2">
+                                    <Badge
+                                        variant={placementMode === 'start' ? 'default' : 'outline'}
+                                        className="cursor-pointer px-4 py-2"
+                                        onClick={() => setPlacementMode('start')}
+                                    >
+                                        Start
+                                    </Badge>
+                                    <Badge
+                                        variant={placementMode === 'goal' ? 'default' : 'outline'}
+                                        className="cursor-pointer px-4 py-2"
+                                        onClick={() => setPlacementMode('goal')}
+                                    >
+                                        Goal
+                                    </Badge>
+                                    <Badge
+                                        variant={placementMode === 'wall' ? 'default' : 'outline'}
+                                        className="cursor-pointer px-4 py-2"
+                                        onClick={() => setPlacementMode('wall')}
+                                    >
+                                        Wall
+                                    </Badge>
+                                </div>
+                                <p className="text-xs text-gray-500 mt-2">
+                                    Click on the grid to place elements. Click walls again to remove them.
+                                </p>
                             </div>
-                            <p className="text-xs text-gray-500 mt-2">
-                                Click on the grid to place elements. Click walls again to remove them.
-                            </p>
+
+                            {/* Legend */}
+                            <div className="bg-white p-4 rounded-lg shadow-sm flex-1">
+                                <p className="font-medium text-gray-700 mb-2">Legend:</p>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-6 h-6 bg-green-500 rounded border border-gray-300"></div>
+                                        <span>Start</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-6 h-6 bg-red-500 rounded border border-gray-300"></div>
+                                        <span>Goal</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-6 h-6 bg-gray-800 rounded border border-gray-300"></div>
+                                        <span>Wall</span>
+                                    </div>
+                                    {selectedGroup !== 'sampling' && (
+                                        <>
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-6 h-6 bg-blue-200 rounded border border-gray-300"></div>
+                                                <span>Explored</span>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-6 h-6 bg-yellow-200 rounded border border-gray-300"></div>
+                                                <span>Frontier</span>
+                                            </div>
+                                        </>
+                                    )}
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-6 h-6 bg-purple-400 rounded border border-gray-300"></div>
+                                        <span>Path</span>
+                                    </div>
+                                    {selectedGroup === 'sampling' && (
+                                        <>
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-6 h-6 bg-blue-400 rounded-full border border-gray-300"></div>
+                                                <span>Sampled Nodes</span>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-6 h-1 bg-blue-300 border border-gray-300"></div>
+                                                <span>Edges</span>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
                         </div>
 
-                        {/* Control Panel */}
+                        {/* Control Panel & Visualization */}
                         <div className="bg-white p-4 rounded-lg shadow-sm">
-                            <ControlPanel
-                                onRun={runAlgorithm}
-                                onStep={stepAlgorithm}
-                                onStop={stopAlgorithm}
-                                onReset={resetAll}
-                                isRunning={isRunning}
-                                canRun={canRun}
-                                canStep={canStep}
-                            />
-                            <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+
+                            {/* Control Panel — CENTERED */}
+                            <div className="flex justify-center">
+                                <ControlPanel
+                                    onRun={runAlgorithm}
+                                    onStep={stepAlgorithm}
+                                    onStop={stopAlgorithm}
+                                    onReset={resetAll}
+                                    isRunning={isRunning}
+                                    canRun={canRun}
+                                    canStep={canStep}
+                                />
+                            </div>
+
+                            {/* Status Bar — CENTERED & COMPACT */}
+                            <div className="mt-2 flex flex-wrap items-center justify-center gap-2 text-xs text-gray-500">
                                 <span className="font-medium text-gray-700">Status:</span>
-                                <span className={`rounded-full px-2 py-1 ${startPos ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
-                                    {startPos ? 'Start placed' : 'Place start'}
+
+                                <span
+                                    className={`rounded-full px-2 py-1 ${
+                                        startPos
+                                            ? 'bg-green-50 text-green-700'
+                                            : 'bg-gray-100 text-gray-500'
+                                    }`}
+                                >
+                                      {startPos ? 'Start placed' : 'Place start'}
                                 </span>
-                                <span className={`rounded-full px-2 py-1 ${goalPos ? 'bg-red-50 text-red-700' : 'bg-gray-100 text-gray-500'}`}>
+
+                                <span
+                                    className={`rounded-full px-2 py-1 ${
+                                        goalPos
+                                            ? 'bg-red-50 text-red-700'
+                                            : 'bg-gray-100 text-gray-500'
+                                    }`}
+                                >
                                     {goalPos ? 'Goal placed' : 'Place goal'}
                                 </span>
+
                                 {!startPos || !goalPos ? (
-                                    <span className="text-gray-400">Run and Step unlock after placing both.</span>
+                                    <span className="text-gray-400">
+                                        Run and Step unlock after placing both.
+                                    </span>
                                 ) : null}
                             </div>
-                        </div>
 
-                        {/* Visualization */}
-                        <div className="bg-white p-6 rounded-lg shadow-sm flex justify-center relative">
-                            {selectedGroup === 'sampling' ? (
-                                <SamplingVisualization
-                                    grid={grid}
-                                    nodes={samplingNodes}
-                                    edges={samplingEdges}
-                                    path={samplingPath}
-                                    onCellClick={handleCellClick}
-                                    cellSize={35}
-                                />
-                            ) : (
-                                <PathPlanningGrid
-                                    grid={grid}
-                                    onCellClick={handleCellClick}
-                                    cellSize={35}
-                                    showValues={selectedAlgorithm === 'astar'}
-                                />
-                            )}
-                            {!startPos || !goalPos ? (
-                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                    <div className="rounded-lg border border-dashed border-gray-300 bg-white/80 px-4 py-3 text-center text-sm text-gray-600 shadow-sm">
-                                        Place a <span className="font-semibold text-green-600">Start</span> and a <span className="font-semibold text-red-600">Goal</span> to begin.
-                                    </div>
-                                </div>
-                            ) : null}
-                        </div>
-
-                        {/* Legend */}
-                        <div className="bg-white p-4 rounded-lg shadow-sm">
-                            <p className="font-medium text-gray-700 mb-2">Legend:</p>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-6 h-6 bg-green-500 rounded border border-gray-300"></div>
-                                    <span>Start</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-6 h-6 bg-red-500 rounded border border-gray-300"></div>
-                                    <span>Goal</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-6 h-6 bg-gray-800 rounded border border-gray-300"></div>
-                                    <span>Wall</span>
-                                </div>
-                                {selectedGroup !== 'sampling' && (
-                                    <>
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-6 h-6 bg-blue-200 rounded border border-gray-300"></div>
-                                            <span>Explored</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-6 h-6 bg-yellow-200 rounded border border-gray-300"></div>
-                                            <span>Frontier</span>
-                                        </div>
-                                    </>
-                                )}
-                                <div className="flex items-center gap-2">
-                                    <div className="w-6 h-6 bg-purple-400 rounded border border-gray-300"></div>
-                                    <span>Path</span>
-                                </div>
-                                {selectedGroup === 'sampling' && (
-                                    <>
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-6 h-6 bg-blue-400 rounded-full border border-gray-300"></div>
-                                            <span>Sampled Nodes</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-6 h-1 bg-blue-300 border border-gray-300"></div>
-                                            <span>Edges</span>
-                                        </div>
-                                    </>
+                            {/* Visualization — CENTERED, GAP REDUCED */}
+                            <div className="mt-2 bg-white p-2 rounded-lg shadow-sm flex items-center justify-center relative min-h-[400px]">
+                                {selectedGroup === 'sampling' ? (
+                                    <SamplingVisualization
+                                        grid={grid}
+                                        nodes={samplingNodes}
+                                        edges={samplingEdges}
+                                        path={samplingPath}
+                                        onCellClick={handleCellClick}
+                                        cellSize={35}
+                                    />
+                                ) : (
+                                    <PathPlanningGrid
+                                        grid={grid}
+                                        onCellClick={handleCellClick}
+                                        cellSize={35}
+                                        showValues={selectedAlgorithm === 'astar'}
+                                    />
                                 )}
                             </div>
                         </div>
+
+
                     </div>
 
                     {/* Right Column - Insights and Challenge */}
