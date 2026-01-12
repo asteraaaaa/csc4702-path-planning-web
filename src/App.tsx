@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
 import Learn from "./pages/Learn";
+import Astar from "./pages/Astar";
 import Interactive from "./pages/Interactive";
 import Challenges from "./pages/Challenges";
 import Reflection from "./pages/Reflection";
@@ -16,6 +17,7 @@ function App(): JSX.Element {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/learn" element={<Learn />} />
+                <Route path="/astar" element={<Astar />} />
                 <Route path="/interactive" element={<Interactive />} />
                 <Route path="/challenges" element={<Challenges />} />
                 <Route path="/reflection" element={<Reflection />} />
