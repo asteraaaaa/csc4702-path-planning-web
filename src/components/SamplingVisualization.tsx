@@ -37,9 +37,12 @@ export const SamplingVisualization: React.FC<SamplingVisualizationProps> = ({
   };
 
   return (
-    <div className="inline-block border-2 border-gray-400 rounded-lg overflow-hidden relative">
+    <div
+      className="inline-block border-2 border-gray-400 rounded-lg overflow-hidden relative"
+      style={{ width, height }}
+    >
       {/* Grid background */}
-      <svg width={width} height={height} className="absolute top-0 left-0">
+      <svg width={width} height={height} className="absolute top-0 left-0 block">
         {/* Draw grid cells */}
         {grid.map((row, rowIndex) =>
           row.map((cell, colIndex) => {
