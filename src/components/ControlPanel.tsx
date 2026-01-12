@@ -7,6 +7,7 @@ interface ControlPanelProps {
   onStep: () => void;
   onReset: () => void;
   isRunning: boolean;
+  canRun: boolean;
   canStep: boolean;
 }
 
@@ -15,13 +16,14 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
   onStep,
   onReset,
   isRunning,
+  canRun,
   canStep,
 }) => {
   return (
     <div className="flex items-center gap-3">
       <Button
         onClick={onRun}
-        disabled={isRunning}
+        disabled={!canRun}
         className="flex items-center gap-2"
       >
         <Play className="w-4 h-4" />

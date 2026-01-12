@@ -342,6 +342,7 @@ export default function Interactive() {
         }
     }, [startPos, goalPos, selectedGroup, resetVisualization, getAlgorithmGenerator, applyGridStep, applySamplingStep]);
 
+    const canRun = !isRunning && startPos !== null && goalPos !== null;
     const canStep = !isRunning && (startPos !== null && goalPos !== null);
 
     return (
@@ -418,12 +419,25 @@ export default function Interactive() {
                                 onStep={stepAlgorithm}
                                 onReset={resetAll}
                                 isRunning={isRunning}
+                                canRun={canRun}
                                 canStep={canStep}
                             />
+                            <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+                                <span className="font-medium text-gray-700">Status:</span>
+                                <span className={`rounded-full px-2 py-1 ${startPos ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+                                    {startPos ? 'Start placed' : 'Place start'}
+                                </span>
+                                <span className={`rounded-full px-2 py-1 ${goalPos ? 'bg-red-50 text-red-700' : 'bg-gray-100 text-gray-500'}`}>
+                                    {goalPos ? 'Goal placed' : 'Place goal'}
+                                </span>
+                                {!startPos || !goalPos ? (
+                                    <span className="text-gray-400">Run and Step unlock after placing both.</span>
+                                ) : null}
+                            </div>
                         </div>
 
                         {/* Visualization */}
-                        <div className="bg-white p-6 rounded-lg shadow-sm flex justify-center">
+                        <div className="bg-white p-6 rounded-lg shadow-sm flex justify-center relative">
                             {selectedGroup === 'sampling' ? (
                                 <SamplingVisualization
                                     grid={grid}
@@ -441,6 +455,13 @@ export default function Interactive() {
                                     showValues={selectedAlgorithm === 'astar'}
                                 />
                             )}
+                            {!startPos || !goalPos ? (
+                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                    <div className="rounded-lg border border-dashed border-gray-300 bg-white/80 px-4 py-3 text-center text-sm text-gray-600 shadow-sm">
+                                        Place a <span className="font-semibold text-green-600">Start</span> and a <span className="font-semibold text-red-600">Goal</span> to begin.
+                                    </div>
+                                </div>
+                            ) : null}
                         </div>
 
                         {/* Legend */}
