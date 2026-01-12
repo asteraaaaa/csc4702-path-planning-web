@@ -29,29 +29,39 @@ function distance(a: Position, b: Position): number {
 }
 
 function isCollisionFree(grid: GridCell[][], from: Position, to: Position): boolean {
-  // Simple line collision check
-  const steps = Math.max(Math.abs(to.row - from.row), Math.abs(to.col - from.col));
-  
-  for (let i = 0; i <= steps; i++) {
-    const t = steps === 0 ? 0 : i / steps;
-    const row = Math.round(from.row + (to.row - from.row) * t);
-    const col = Math.round(from.col + (to.col - from.col) * t);
+  let x = from.col;
+  let y = from.row;
+  const targetX = to.col;
+  const targetY = to.row;
+  const dx = Math.abs(targetX - x);
+  const dy = Math.abs(targetY - y);
+  const sx = x < targetX ? 1 : -1;
+  const sy = y < targetY ? 1 : -1;
+  let err = dx - dy;
 
-    if (
-        row < 0 ||
-        row >= grid.length ||
-        col < 0 ||
-        col >= grid[0].length
-    ) {
+  while (true) {
+    if (y < 0 || y >= grid.length || x < 0 || x >= grid[0].length) {
+      return false;
+    }
+    if (grid[y][x].type === 'wall') {
       return false;
     }
 
+    if (x === targetX && y === targetY) {
+      break;
+    }
 
-    if (grid[row][col].type === 'wall') {
-      return false;
+    const e2 = 2 * err;
+    if (e2 > -dy) {
+      err -= dy;
+      x += sx;
+    }
+    if (e2 < dx) {
+      err += dx;
+      y += sy;
     }
   }
-  
+
   return true;
 }
 
