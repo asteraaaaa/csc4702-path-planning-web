@@ -54,6 +54,7 @@ export default function Interactive() {
     // Sampling-specific state
     const [samplingNodes, setSamplingNodes] = useState<SamplingNode[]>([]);
     const [samplingEdges, setSamplingEdges] = useState<Array<{ from: { row: number; col: number }; to: { row: number; col: number } }>>([]);
+    const [samplingPath, setSamplingPath] = useState<Array<{ row: number; col: number }>>([]);
 
     const generatorRef = useRef<Generator<PathfindingStep | SamplingStep> | null>(null);
     const animationRef = useRef<number | null>(null);
@@ -86,6 +87,7 @@ export default function Interactive() {
         setStats(undefined);
         setSamplingNodes([]);
         setSamplingEdges([]);
+        setSamplingPath([]);
         setIsRunning(false);
         if (animationRef.current) {
             cancelAnimationFrame(animationRef.current);
@@ -106,6 +108,7 @@ export default function Interactive() {
         setStats(undefined);
         setSamplingNodes([]);
         setSamplingEdges([]);
+        setSamplingPath([]);
         setIsRunning(false);
         if (animationRef.current) {
             cancelAnimationFrame(animationRef.current);
@@ -209,6 +212,7 @@ export default function Interactive() {
     const applySamplingStep = useCallback((step: SamplingStep) => {
         setSamplingNodes(step.nodes);
         setSamplingEdges(step.edges);
+        setSamplingPath(step.path);
 
         setStats({
             nodesExplored: step.nodes.length,
@@ -425,7 +429,7 @@ export default function Interactive() {
                                     grid={grid}
                                     nodes={samplingNodes}
                                     edges={samplingEdges}
-                                    path={stats?.pathLength ? samplingNodes.filter((_, i) => i < stats.pathLength).map(n => n.pos) : []}
+                                    path={samplingPath}
                                     onCellClick={handleCellClick}
                                     cellSize={35}
                                 />
