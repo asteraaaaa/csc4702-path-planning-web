@@ -6,6 +6,10 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(circle at top, #1b2a4a 0%, #0b0f1a 45%, #05070d 100%);
+  color: #f5f7ff;
+  min-height: 100vh;
+  transition: background 0.4s ease;
 }
 
 
@@ -14,29 +18,47 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #222;
+  background: linear-gradient(90deg, rgba(15, 23, 42, 0.92), rgba(30, 64, 175, 0.6));
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.35);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
 }
 
 
 .logo {
   color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 12px rgba(96, 165, 250, 0.6);
 }
 
 .nav-links a {
-  color: #ccc;
+  color: #cbd5f5;
   margin-left: 15px;
   text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 999px;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
 
+.nav-links a:hover {
+  color: #fff;
+  background-color: rgba(96, 165, 250, 0.2);
+  transform: translateY(-1px);
+}
 
 .nav-links a.active {
   color: #fff;
   font-weight: bold;
+  background-color: rgba(59, 130, 246, 0.35);
 }
 
 
 .page {
   padding: 20px;
+  animation: page-fade 0.5s ease;
 }
 
 
@@ -44,7 +66,44 @@ body {
 .interactive-placeholder {
   margin-top: 10px;
   padding: 20px;
-  border: 2px dashed #aaa;
+  border: 2px dashed rgba(148, 163, 184, 0.7);
   text-align: center;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.55);
+  color: #e2e8f0;
+  box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
+.video-placeholder:hover,
+.interactive-placeholder:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(96, 165, 250, 0.9);
+  box-shadow: 0 18px 30px rgba(30, 64, 175, 0.35);
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 18px;
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(14px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 32px rgba(59, 130, 246, 0.25);
+  border-color: rgba(96, 165, 250, 0.5);
+}
+
+@keyframes page-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
