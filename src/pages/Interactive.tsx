@@ -354,17 +354,17 @@ export default function Interactive() {
     const canStep = !isRunning && (startPos !== null && goalPos !== null);
 
     return (
-        <div className="min-h-screen bg-gray-50 p-8">
+        <div className="min-h-screen bg-transparent p-8">
             <div className="max-w-7xl mx-auto space-y-6">
                 {/* Header */}
                 <div className="text-center space-y-2">
-                    <h1 className="text-3xl tracking-tight text-gray-900">
+                    <h1 className="text-3xl tracking-tight text-slate-100">
                         Interactive Path Planning: Watch Different Algorithms Think
                     </h1>
-                    <p className="text-gray-600">
+                    <p className="text-slate-300">
                         Build the world. Choose an algorithm. Watch how it thinks.
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-slate-400">
                         Different planners make different decisions, even in the same environment.
                     </p>
                 </div>
@@ -372,7 +372,7 @@ export default function Interactive() {
                 <Separator />
 
                 {/* Group Selector */}
-                <div className="bg-white p-6 rounded-lg shadow-sm">
+                <div className="glass-card p-6">
                     <GroupSelector selected={selectedGroup} onChange={handleGroupChange} />
                 </div>
 
@@ -381,7 +381,7 @@ export default function Interactive() {
                     {/* Left Column - Controls and Grid */}
                     <div className="lg:col-span-2 space-y-4">
                         {/* Algorithm Selector */}
-                        <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="glass-card p-4">
                             <AlgorithmSelector
                                 selected={selectedAlgorithm}
                                 group={selectedGroup}
@@ -391,8 +391,8 @@ export default function Interactive() {
 
                         <div className="flex flex-col lg:flex-row gap-4">
                             {/* Placement Mode */}
-                            <div className="bg-white p-4 rounded-lg shadow-sm flex-1">
-                                <label className="font-medium text-gray-700 block mb-2">Placement Mode:</label>
+                            <div className="glass-card p-4 flex-1">
+                                <label className="font-medium text-slate-200 block mb-2">Placement Mode:</label>
                                 <div className="flex gap-2">
                                     <Badge
                                         variant={placementMode === 'start' ? 'default' : 'outline'}
@@ -416,51 +416,51 @@ export default function Interactive() {
                                         Wall
                                     </Badge>
                                 </div>
-                                <p className="text-xs text-gray-500 mt-2">
+                                <p className="text-xs text-slate-400 mt-2">
                                     Click on the grid to place elements. Click walls again to remove them.
                                 </p>
                             </div>
 
                             {/* Legend */}
-                            <div className="bg-white p-4 rounded-lg shadow-sm flex-1">
-                                <p className="font-medium text-gray-700 mb-2">Legend:</p>
-                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
+                            <div className="glass-card p-4 flex-1">
+                                <p className="font-medium text-slate-200 mb-2">Legend:</p>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm text-slate-200">
                                     <div className="flex items-center gap-2">
-                                        <div className="w-6 h-6 bg-green-500 rounded border border-gray-300"></div>
+                                        <div className="w-6 h-6 bg-green-500 rounded border border-slate-700"></div>
                                         <span>Start</span>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <div className="w-6 h-6 bg-red-500 rounded border border-gray-300"></div>
+                                        <div className="w-6 h-6 bg-red-500 rounded border border-slate-700"></div>
                                         <span>Goal</span>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <div className="w-6 h-6 bg-gray-800 rounded border border-gray-300"></div>
+                                        <div className="w-6 h-6 bg-gray-800 rounded border border-slate-700"></div>
                                         <span>Wall</span>
                                     </div>
                                     {selectedGroup !== 'sampling' && (
                                         <>
                                             <div className="flex items-center gap-2">
-                                                <div className="w-6 h-6 bg-blue-200 rounded border border-gray-300"></div>
+                                                <div className="w-6 h-6 bg-blue-200 rounded border border-slate-700"></div>
                                                 <span>Explored</span>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <div className="w-6 h-6 bg-yellow-200 rounded border border-gray-300"></div>
+                                                <div className="w-6 h-6 bg-yellow-200 rounded border border-slate-700"></div>
                                                 <span>Frontier</span>
                                             </div>
                                         </>
                                     )}
                                     <div className="flex items-center gap-2">
-                                        <div className="w-6 h-6 bg-purple-400 rounded border border-gray-300"></div>
+                                        <div className="w-6 h-6 bg-purple-400 rounded border border-slate-700"></div>
                                         <span>Path</span>
                                     </div>
                                     {selectedGroup === 'sampling' && (
                                         <>
                                             <div className="flex items-center gap-2">
-                                                <div className="w-6 h-6 bg-blue-400 rounded-full border border-gray-300"></div>
+                                                <div className="w-6 h-6 bg-blue-400 rounded-full border border-slate-700"></div>
                                                 <span>Sampled Nodes</span>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <div className="w-6 h-1 bg-blue-300 border border-gray-300"></div>
+                                                <div className="w-6 h-1 bg-blue-300 border border-slate-700"></div>
                                                 <span>Edges</span>
                                             </div>
                                         </>
@@ -470,7 +470,7 @@ export default function Interactive() {
                         </div>
 
                         {/* Control Panel & Visualization */}
-                        <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="glass-card p-4">
 
                             {/* Control Panel — CENTERED */}
                             <div className="flex justify-center">
@@ -486,14 +486,14 @@ export default function Interactive() {
                             </div>
 
                             {/* Status Bar — CENTERED & COMPACT */}
-                            <div className="mt-2 flex flex-wrap items-center justify-center gap-2 text-xs text-gray-500">
-                                <span className="font-medium text-gray-700">Status:</span>
+                            <div className="mt-2 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-400">
+                                <span className="font-medium text-slate-200">Status:</span>
 
                                 <span
                                     className={`rounded-full px-2 py-1 ${
                                         startPos
-                                            ? 'bg-green-50 text-green-700'
-                                            : 'bg-gray-100 text-gray-500'
+                                            ? 'bg-green-500/20 text-green-200'
+                                            : 'bg-slate-800/60 text-slate-400'
                                     }`}
                                 >
                                       {startPos ? 'Start placed' : 'Place start'}
@@ -502,22 +502,22 @@ export default function Interactive() {
                                 <span
                                     className={`rounded-full px-2 py-1 ${
                                         goalPos
-                                            ? 'bg-red-50 text-red-700'
-                                            : 'bg-gray-100 text-gray-500'
+                                            ? 'bg-red-500/20 text-red-200'
+                                            : 'bg-slate-800/60 text-slate-400'
                                     }`}
                                 >
                                     {goalPos ? 'Goal placed' : 'Place goal'}
                                 </span>
 
                                 {!startPos || !goalPos ? (
-                                    <span className="text-gray-400">
+                                    <span className="text-slate-500">
                                         Run and Step unlock after placing both.
                                     </span>
                                 ) : null}
                             </div>
 
                             {/* Visualization — CENTERED, GAP REDUCED */}
-                            <div className="mt-2 bg-white p-2 rounded-lg shadow-sm flex items-center justify-center relative min-h-[400px]">
+                            <div className="mt-2 bg-slate-900/60 p-2 rounded-lg shadow-inner shadow-slate-950/40 flex items-center justify-center relative min-h-[400px]">
                                 {selectedGroup === 'sampling' ? (
                                     <SamplingVisualization
                                         grid={grid}
