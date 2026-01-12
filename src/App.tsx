@@ -1,9 +1,5 @@
-// =========================
-// FILE: src/App.jsx
-// =========================
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-
 
 import Home from "./pages/Home";
 import Learn from "./pages/Learn";
@@ -11,11 +7,11 @@ import Interactive from "./pages/Interactive";
 import Challenges from "./pages/Challenges";
 import Reflection from "./pages/Reflection";
 import Resources from "./pages/Resources";
+import {JSX} from "react";
 
-
-function App() {
+function App(): JSX.Element {
     return (
-        <div>
+        <>
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -25,9 +21,8 @@ function App() {
                 <Route path="/reflection" element={<Reflection />} />
                 <Route path="/resources" element={<Resources />} />
             </Routes>
-        </div>
+        </>
     );
 }
-
 
 export default App;
