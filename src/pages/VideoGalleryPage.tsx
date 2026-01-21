@@ -26,13 +26,16 @@ export function VideoGalleryPage() {
                         </div>
 
                         <div className="p-6">
-                            <div className="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                            <div className="aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden">
                                 <video
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-contain"
                                     controls
                                     preload="metadata"
                                 >
-                                    <source src="public/reactive-navigation.mp4" type="video/mp4" />
+                                    <source
+                                        src="https://asteraaaaa.github.io/csc4702-path-planning-web/reactive-navigation.mp4"
+                                        type="video/mp4"
+                                    />
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
@@ -81,16 +84,20 @@ export function VideoGalleryPage() {
                         </div>
 
                         <div className="p-6">
-                            <div className="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                            <div className="aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden">
                                 <video
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-contain"
                                     controls
                                     preload="metadata"
                                 >
-                                    <source src="public/astar-navigation.mp4" type="video/mp4" />
+                                    <source
+                                        src="https://asteraaaaa.github.io/csc4702-path-planning-web/astar-navigation.mp4"
+                                        type="video/mp4"
+                                    />
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
+
 
                             <div className="space-y-4">
                                 <div>
