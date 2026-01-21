@@ -1,30 +1,26 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import { Layout } from "./components/Layout";
+import { HomePage } from "./pages/HomePage";
+import { VideoGalleryPage } from "./pages/VideoGalleryPage";
+import { ReactiveNavigationPage } from "./pages/ReactiveNavigationPage";
+import { AStarPlanningPage } from "./pages/AStarPlanningPage";
+import { InteractivePage } from "./pages/InteractivePage";
+import { ChallengesPage } from "./pages/ChallengesPage";
+import { ReflectionPage } from "./pages/ReflectionPage";
+import { JSX } from "react";
 
-import Home from "./pages/Home";
-import Learn from "./pages/Learn";
-import Astar from "./pages/Astar";
-import Interactive from "./pages/Interactive";
-import Challenges from "./pages/Challenges";
-import Reflection from "./pages/Reflection";
-import Resources from "./pages/Resources";
-import {JSX} from "react";
-
-function App(): JSX.Element {
+export default function App(): JSX.Element {
     return (
-        <>
-            <Navbar />
+        <Layout>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/learn" element={<Learn />} />
-                <Route path="/astar" element={<Astar />} />
-                <Route path="/interactive" element={<Interactive />} />
-                <Route path="/challenges" element={<Challenges />} />
-                <Route path="/reflection" element={<Reflection />} />
-                <Route path="/resources" element={<Resources />} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/videos" element={<VideoGalleryPage />} />
+                <Route path="/reactive" element={<ReactiveNavigationPage />} />
+                <Route path="/astar" element={<AStarPlanningPage />} />
+                <Route path="/interactive" element={<InteractivePage />} />
+                <Route path="/challenges" element={<ChallengesPage />} />
+                <Route path="/reflection" element={<ReflectionPage />} />
             </Routes>
-        </>
+        </Layout>
     );
 }
-
-export default App;
