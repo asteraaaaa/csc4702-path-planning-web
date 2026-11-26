@@ -33,7 +33,7 @@ export function VideoGalleryPage() {
                                     preload="metadata"
                                 >
                                     <source
-                                        src="https://asteraaaaa.github.io/csc4702-path-planning-web/reactive-navigation.mp4"
+                                        src={`${import.meta.env.BASE_URL}reactive-navigation.mp4`}
                                         type="video/mp4"
                                     />
                                     Your browser does not support the video tag.
@@ -91,7 +91,7 @@ export function VideoGalleryPage() {
                                     preload="metadata"
                                 >
                                     <source
-                                        src="https://asteraaaaa.github.io/csc4702-path-planning-web/astar-navigation.mp4"
+                                        src={`${import.meta.env.BASE_URL}astar-navigation.mp4`}
                                         type="video/mp4"
                                     />
                                     Your browser does not support the video tag.

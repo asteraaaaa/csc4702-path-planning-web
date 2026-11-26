@@ -57,9 +57,15 @@ The website is organised into the following sections:
 - Introduction to `g(n)`, `h(n)`, and `f(n)`
 
 ### 🧪 Interactive
-- Grid-based maze simulation
-- Step-by-step visualisation of algorithm behaviour
-- Compare how different algorithms explore the same environment
+- Build your own world: place a start, a goal and walls on a grid
+- Run, step through, stop or reset each algorithm and watch how it explores
+- Eleven algorithms in three families:
+
+| Family | Algorithms |
+| --- | --- |
+| Reactive / local (no global map) | Wall following, Bug algorithm, Dynamic Window Approach (DWA) |
+| Graph / grid-based | BFS, DFS, Dijkstra, Greedy best-first, A\* |
+| Sampling-based (continuous space) | PRM, RRT, RRT\* |
 
 ### 🎯 Challenges
 - Mini prediction tasks
@@ -75,37 +81,54 @@ The website is organised into the following sections:
 
 ## 🛠️ Technologies Used
 
-- **React + TypeScript**
+- **React 19 + TypeScript**
 - **Vite**
-- **Tailwind CSS**
+- **React Router** (hash routing, so every page works on GitHub Pages)
+- **Tailwind CSS 4** and **Radix UI** primitives
 - **Lucide Icons**
-- **GitHub Pages** (deployment)
+- **GitHub Pages** (deployment via the `gh-pages` branch)
+
+---
+
+## 🚀 Run Locally
+
+Requires **Node.js 20.19+** (needed by Vite 7).
+
+```bash
+npm ci            # install dependencies
+npm run dev       # start the dev server, then open the URL it prints
+npm run build     # type-check and build into dist/
+npm run preview   # serve the production build locally
+npm run lint      # lint
+npm run deploy    # publish dist/ to the gh-pages branch (maintainers)
+```
+
+The videos are served from `public/`, so they also play in a local copy without internet.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-
 csc4702-path-planning-web/
-│
 ├── public/
 │   ├── reactive-navigation.mp4
 │   ├── astar-navigation.mp4
 │   └── vite.svg
-│
 ├── src/
-│   ├── components/
-│   ├── pages/
+│   ├── components/        # page sections, grid and sampling visualisations, UI primitives
+│   ├── pages/             # Home, Videos, Reactive, A*, Interactive, Challenges, Reflection
+│   ├── utils/             # pathfinding.ts, reactiveAlgorithms.ts, samplingAlgorithms.ts
+│   ├── types/             # algorithm metadata
+│   ├── styles/
 │   ├── App.tsx
 │   └── main.tsx
-│
-├── dist/              # Production build (GitHub Pages)
-├── vite.config.ts
+├── vite.config.js
 ├── package.json
 └── README.md
-
 ```
+
+`dist/` is the production build. It is not committed; `npm run deploy` publishes it to the `gh-pages` branch.
 
 ---
 
@@ -143,10 +166,16 @@ The same robot appears throughout the platform — only the **depth of explanati
 
 ## ✅ Submission Notes
 
-- Videos are hosted locally and embedded in the platform
+- Videos are stored in the repository and embedded in the platform
 - Website is accessible via GitHub Pages
-- Platform supports both **online viewing** and **local deployment**
+- Platform supports both **online viewing** and **local deployment** (`npm run preview`)
 - Designed to meet CSC4702 project requirements
+
+---
+
+## 📜 Licence
+
+[MIT](LICENSE)
 
 ---
 
