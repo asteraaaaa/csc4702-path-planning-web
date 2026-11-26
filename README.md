@@ -8,6 +8,8 @@ The project demonstrates how **the same navigation problem** can be explained an
 🌐 **Live Site (GitHub Pages):**  
 https://asteraaaaa.github.io/csc4702-path-planning-web/
 
+![Interactive page: A* finding a path around walls on a grid, with explored cells and f, g, h values](docs/social-preview.jpg)
+
 ---
 
 ## 📌 Project Overview
