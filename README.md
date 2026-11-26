@@ -114,7 +114,7 @@ csc4702-path-planning-web/
 ├── public/
 │   ├── reactive-navigation.mp4
 │   ├── astar-navigation.mp4
-│   └── vite.svg
+│   └── favicon.svg
 ├── src/
 │   ├── components/        # page sections, grid and sampling visualisations, UI primitives
 │   ├── pages/             # Home, Videos, Reactive, A*, Interactive, Challenges, Reflection
